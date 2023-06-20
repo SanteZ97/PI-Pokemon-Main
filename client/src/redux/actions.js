@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// constants
+// Constants
 const URL = "http://localhost:3001";
 
 export const FETCH_TYPES = "FETCH_TYPES";
@@ -11,7 +11,7 @@ export const FILTER_POKEMONS = "FILTER_POKEMONS";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const CREATE_POKEMON = "CREATE_POKEMON";
 
-// actions
+// Actions
 export const fetchTypes = () => {
   return async (dispatch) => {
     try {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { orderPokemons } from "../../redux/actions";
+import { orderPokemons, fetchPokemons } from "../../redux/actions";
 import {
   OrderContainer,
   SelectOption,
@@ -10,59 +10,61 @@ import {
 } from "./StyledSearchOrder";
 
 const SearchOrder = () => {
-  const [orderRules, setOrderRules] = useState({ name: null, attack: null });
+  const [mounted, setMounted] = useState(false);
+  const [orderRules, setOrderRules] = useState(() => {
+    const storedOrderRules = localStorage.getItem("orderRules");
+    return storedOrderRules ? JSON.parse(storedOrderRules) : { name: "", attack: "" };
+  });
   const dispatch = useDispatch();
 
   const onChangeHandler = (event) => {
     if (event.target.id === "name") {
-      setOrderRules({ ...orderRules, name: event.target.value });
+      setOrderRules({ ...orderRules, name: event.target.value || "" });
     }
     if (event.target.id === "attack") {
-      setOrderRules({ ...orderRules, attack: event.target.value });
+      setOrderRules({ ...orderRules, attack: event.target.value || "" });
     }
+  };
+
+  const clearFilters = () => {
+    setOrderRules({ name: "", attack: "" });
   };
 
   useEffect(() => {
-    dispatch(orderPokemons(orderRules));
-  }, [dispatch, orderRules]);
+    if (mounted) {
+      if (orderRules.name || orderRules.attack) {
+        dispatch(orderPokemons(orderRules));
+      } else {
+        dispatch(fetchPokemons());
+      }
+    } else {
+      setMounted(true);
+    }
+  }, [dispatch, orderRules, mounted]);
 
-  // Verificar si hay algún filtro aplicado
+  useEffect(() => {
+    localStorage.setItem("orderRules", JSON.stringify(orderRules));
+  }, [orderRules]);
+
   const isFilterApplied = orderRules.name || orderRules.attack;
-
-  // Restablecer los filtros
-  const resetFilters = () => {
-    setOrderRules({ name: null, attack: null });
-  };
 
   return (
     <OrderContainer>
       <SelectOption>
-        <label htmlFor="name">Sort by name:</label>
-        <Select
-          onChange={onChangeHandler}
-          name="name"
-          id="name"
-          value={orderRules.name ? (orderRules.name === "asc" ? "asc" : "desc") : "0"}
-        >
-          <Option value="0" disabled style={{ display: "none" }}></Option>
-          <Option value="asc">a → z</Option>
-          <Option value="desc">z → a</Option>
+        <Select id="name" value={orderRules.name} onChange={onChangeHandler}>
+          <Option value="">Order by name</Option>
+          <Option value="asc">A-Z</Option>
+          <Option value="desc">Z-A</Option>
+        </Select>
+        <Select id="attack" value={orderRules.attack} onChange={onChangeHandler}>
+          <Option value="">Order by attack</Option>
+          <Option value="asc">Lowest to highest</Option>
+          <Option value="desc">Highest to lowest</Option>
         </Select>
       </SelectOption>
-      <SelectOption>
-        <label htmlFor="attack">Sort by attack:</label>
-        <Select
-          onChange={onChangeHandler}
-          name="attack"
-          id="attack"
-          value={orderRules.attack ? (orderRules.attack === "desc" ? "desc" : "asc") : "0"}
-        >
-          <Option value="0" disabled style={{ display: "none" }}></Option>
-          <Option value="desc">high → low</Option>
-          <Option value="asc">low → high</Option>
-        </Select>
-      </SelectOption>
-      {isFilterApplied && <ResetButton onClick={resetFilters}>Reset</ResetButton>}
+      {isFilterApplied && (
+        <ResetButton onClick={clearFilters}>Clear Filters</ResetButton>
+      )}
     </OrderContainer>
   );
 };
