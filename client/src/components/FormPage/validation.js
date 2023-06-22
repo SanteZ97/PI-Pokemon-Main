@@ -1,4 +1,4 @@
-// constants
+// constantes
 export const emptyErrors = {
   name: { isEmpty: "", invalidLength: "" },
   image: { isEmpty: "" },
@@ -21,7 +21,7 @@ export const validRanges = {
 export const validNameLength = 30;
 
 export const isValid = (errorsArray) => {
-  // if there are no errors to be found, return true
+  // Si no hay errores, devuelve true
   return JSON.stringify(errorsArray) === JSON.stringify(emptyErrors);
 };
 

@@ -1,4 +1,3 @@
-// styled-components documentation: https://pablomonteserin.com/curso/react/styled-components/
 import { createGlobalStyle } from "styled-components";
 
 export const StyledGlobal = createGlobalStyle`

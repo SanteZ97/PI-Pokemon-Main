@@ -6,8 +6,8 @@ const Landing = () => {
   useEffect(()=>{},[])
   return (
     <BigContainer>
-      <Title>minimal pokédex</Title>
-      <HomeLink to="/home">discover</HomeLink>
+      <Title>Pokemon api</Title>
+      <HomeLink to="/home">Enter</HomeLink>
     </BigContainer>
   );
 };

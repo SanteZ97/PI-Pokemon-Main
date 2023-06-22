@@ -26,14 +26,12 @@ pokemonRouter.get("/", async (req, res) => {
       const { name, image, hp, attack, defense, speed, height, weight, types } =
         req.body;
   
-      // find type ids on db
       const filteredDbTypes = (await Type.findAll()).filter((type) =>
         types.includes(type.name)
       );
       const typeIds = filteredDbTypes.map((type) => type.id);
       console.log(typeIds);
   
-      // association
       if (!typeIds.length)
         throw Error(`Types table must be initialized before Pokemons table.`);
   
@@ -57,9 +55,9 @@ pokemonRouter.get("/", async (req, res) => {
   pokemonRouter.get("/:idPokemon", async (req, res) => {
     const { idPokemon } = req.params;
     try {
-      // first i have to validate the UUID
+      // Primero valido el UUID
       if (validate(idPokemon)) {
-        // in db?
+        // En db
         const pokemonInDb = await Pokemon.findByPk(idPokemon);
   
         if (pokemonInDb) {
@@ -71,7 +69,7 @@ pokemonRouter.get("/", async (req, res) => {
         }
       }
       if (!parseInt(idPokemon)) throw Error(`ID must be an integer or a UUID.`);
-      // in api?
+      // En api
       const pokemonInApi = await getPokemonById(idPokemon);
       if (!pokemonInApi)
         throw Error(`The pokemon with ID ${idPokemon} does not exist.`);

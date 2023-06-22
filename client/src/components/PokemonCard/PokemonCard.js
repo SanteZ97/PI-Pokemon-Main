@@ -10,7 +10,7 @@ import {
 } from "./StyledPokemonCard";
 
 const PokemonCard = ({ name, image, id, types }) => {
-  // default image loader
+  // Cargador de imágenes por defecto
   const defaultPokemonImage = "pokemon-default.png";
   const [imageSrc, setImageSrc] = useState(defaultPokemonImage);
 

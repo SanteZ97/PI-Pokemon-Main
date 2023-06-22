@@ -18,7 +18,7 @@ module.exports = {
     },
   
     getPokemonTypesFromDb: async (pokemonInDb) => {
-      // returns ["electric", "fire"] with getTypes from the association table PokemonTypes
+      // Devuelve ["eléctrico", "fuego"] con getTypes de la tabla de asociación PokemonTypes
       return await pokemonInDb
         .getTypes()
         .then((types) => {

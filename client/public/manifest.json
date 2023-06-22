@@ -1,6 +1,6 @@
 {
-  "short_name": "minimal pokédex",
-  "name": "minimal pokédex, pokemon encyclopedia",
+  "short_name": "Pokemon api",
+  "name": "Pokemon api, pokemon encyclopedia",
   "icons": [
     {
       "src": "favicon.ico",

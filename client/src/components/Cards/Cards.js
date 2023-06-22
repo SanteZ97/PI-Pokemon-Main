@@ -37,7 +37,7 @@ const Cards = ({ allPokemons, pokemons, currentPage }) => {
         ) : (
           <LoadingWrapper>
             <LoadingGIF src="loading.gif" alt="loading" />
-            <LoadingText>loading, please be patient...</LoadingText>
+            <LoadingText>Loading...</LoadingText>
           </LoadingWrapper>
         )}
       </Wrapper>

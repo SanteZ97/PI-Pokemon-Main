@@ -1,12 +1,12 @@
 /*
-  THEME CONVENTION
+  CONVENCIÓN TEMÁTICA
 
-  <background>: maximum brightness/darkness color value of the palette, little to no saturation.
-  <text>: inverse of <background>, little to no saturation.
-  <primary>: the next value closer to gray compared to <background>, low saturation.
-  <secondary>: the next value closer to gray compared to <primary>, mid saturation.
-  <tertiary>: the next vlaue closer to gray compared to <secondary>, high saturation.
-  <accent>: the most colorful, saturated and bright color for details, highest saturation.
+  <background>: valor máximo de luminosidad/oscuridad de la paleta, poca o ninguna saturación.
+  <text>: inverso de <background>, poca o ninguna saturación.
+  <primary>: el siguiente valor más cercano al gris en comparación con <background>, poca saturación.
+  <secondary>: el siguiente valor más cercano al gris comparado con <primary>, saturación media.
+  <tertiary>: el siguiente valor más cercano al gris comparado con <secondary>, saturación alta.
+  <accent>: el color más colorido, saturado y brillante para los detalles, saturación más alta.
 */
 
 export const theme = {
@@ -35,7 +35,7 @@ export const theme = {
       tertiary: "rgb(71, 49, 125)",
       accent: "rgb(160, 133, 255)",
     },
-    splashScreen: "splash-dark.webp",
+    splashScreen: "pokemon noche.jpg",
     tileBackground: "bg-tile-dark.png",
   },
 };

@@ -5,7 +5,6 @@ const { Pokemon } = require("../db");
 const getPokemonByName = async (name) => {
   try {
     const nameNormalized = name.toLowerCase();
-    // in db?
     const pokemonInDb = await Pokemon.findOne({
       where: { name: nameNormalized },
     });
@@ -15,7 +14,6 @@ const getPokemonByName = async (name) => {
       return { ...pokemonInDb.dataValues, types: pokemonTypes };
     }
 
-    // in api?
     const rawPokemon = (
       await axios(`https://pokeapi.co/api/v2/pokemon/${nameNormalized}`)
     ).data;

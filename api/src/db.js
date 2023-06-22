@@ -7,8 +7,8 @@ const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 const sequelize = new Sequelize(
    `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemon`,
    {
-      logging: false, // set to console.log to see the raw SQL queries
-      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+      logging: false, // console.log para ver las consultas SQL sin procesar
+      native: false, // Permite a Sequelize saber que podemos usar pg-native para un 30% más de velocidad
    }
 );
 const basename = path.basename(__filename);
@@ -41,8 +41,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Pokemon, Type } = sequelize.models;
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
 Pokemon.belongsToMany(Type, { through: "PokemonTypes" });
 Type.belongsToMany(Pokemon, { through: "PokemonTypes" });
 
