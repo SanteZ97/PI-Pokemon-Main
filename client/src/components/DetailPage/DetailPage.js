@@ -26,7 +26,7 @@ const Detail = () => {
       </BackButton>
       <PokemonContainer>
         <PokemonTitle>{pokemon.name}</PokemonTitle>
-        {/* ghost is a fake title that tricks flex into making space for the real one */}
+        {/* ghost es un título falso que engaña a flex para que deje espacio al verdadero */}
         <PokemonTitle ghost>{pokemon.name}</PokemonTitle>
         <PokemonImage src={pokemon.image} alt={pokemon.name} />
         <PokemonInfo>

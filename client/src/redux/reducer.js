@@ -45,6 +45,7 @@ const reducer = (state = initialState, { type, payload }) => {
       const search = payload.toLowerCase();
       if (search === "") resultPokemons = state.orderedPokemons;
       else {
+        // Filtrar los pokémon por nombre de búsqueda
         resultPokemons = state.orderedPokemons?.filter(
           (pokemon) => pokemon.name === search
         );
@@ -57,7 +58,7 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     case ORDER_POKEMONS:
       let orderedPokemons = [];
-      // name
+      // Ordenar los pokémon según las reglas proporcionadas
       if (payload.name === "asc")
         orderedPokemons = state.pokemons.sort((a, b) =>
           a.name.localeCompare(b.name)
@@ -66,7 +67,6 @@ const reducer = (state = initialState, { type, payload }) => {
         orderedPokemons = state.pokemons.sort((a, b) =>
           b.name.localeCompare(a.name)
         );
-      // attack
       if (payload.attack === "asc")
         orderedPokemons = state.pokemons.sort((a, b) => a.attack - b.attack);
       if (payload.attack === "desc")
@@ -76,7 +76,7 @@ const reducer = (state = initialState, { type, payload }) => {
         orderedPokemons: orderedPokemons,
       };
     case FILTER_POKEMONS:
-      // bySource
+      // Filtrar los pokémon según las opciones proporcionadas
       let combinedPokemons = [];
       const dbPokemons = state.orderedPokemons.filter(
         (pokemon) => !Number(pokemon.id)
@@ -89,7 +89,6 @@ const reducer = (state = initialState, { type, payload }) => {
       if (payload.bySource.api)
         combinedPokemons = [...combinedPokemons, ...apiPokemons];
 
-      // byType
       let filteredPokemonsByType = combinedPokemons.filter((pokemon) => {
         return payload.byType.every((checkedType) => {
           return pokemon.types.some((type) => {

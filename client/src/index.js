@@ -4,7 +4,11 @@ import ReactDOM from "react-dom";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 
+// Renderizar la aplicación en el elemento con el id "root" del DOM
 ReactDOM.render(
-  <Provider store={store}> <App /> </Provider>,
+  // Utilizar el componente Provider de react-redux para proporcionar el store de Redux a la aplicación
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );

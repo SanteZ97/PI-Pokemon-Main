@@ -21,7 +21,7 @@ export const theme = {
       tertiary: "rgb(240, 165, 165)",
       accent: "rgb(228, 64, 75)",
     },
-    splashScreen: "splash-light.webp",
+    splashScreen: "pokemon-light.webp",
     tileBackground: "bg-tile-light.png",
   },
   dark: {
@@ -35,7 +35,7 @@ export const theme = {
       tertiary: "rgb(71, 49, 125)",
       accent: "rgb(160, 133, 255)",
     },
-    splashScreen: "pokemon noche.jpg",
+    splashScreen: "pokemon-dark.webp",
     tileBackground: "bg-tile-dark.png",
   },
 };

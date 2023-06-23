@@ -26,18 +26,3 @@ export const Option = styled.option`
   font-family: "Signika";
   font-size: 1.2em;
 `;
-
-export const ResetButton = styled.button`
-  font-family: "Signika";
-  font-size: 0.9em;
-  padding: 0.5em 1em;
-  background-color: #e53935;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #c62828;
-  }
-`;

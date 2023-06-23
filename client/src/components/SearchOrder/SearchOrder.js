@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { orderPokemons, fetchPokemons } from "../../redux/actions";
-import {
-  OrderContainer,
-  SelectOption,
-  Select,
-  Option,
-  ResetButton,
-} from "./StyledSearchOrder";
+import { OrderContainer, SelectOption, Select, Option } from "./StyledSearchOrder";
 
 const SearchOrder = () => {
-  const [mounted, setMounted] = useState(false);
   const [orderRules, setOrderRules] = useState(() => {
     const storedOrderRules = localStorage.getItem("orderRules");
-    return storedOrderRules ? JSON.parse(storedOrderRules) : { name: "", attack: "" };
+    return storedOrderRules
+      ? JSON.parse(storedOrderRules)
+      : { name: "", attack: "" };
   });
   const dispatch = useDispatch();
 
@@ -26,27 +21,17 @@ const SearchOrder = () => {
     }
   };
 
-  const clearFilters = () => {
-    setOrderRules({ name: "", attack: "" });
-  };
-
   useEffect(() => {
-    if (mounted) {
-      if (orderRules.name || orderRules.attack) {
-        dispatch(orderPokemons(orderRules));
-      } else {
-        dispatch(fetchPokemons());
-      }
+    if (orderRules.name || orderRules.attack) {
+      dispatch(orderPokemons(orderRules));
     } else {
-      setMounted(true);
+      dispatch(fetchPokemons());
     }
-  }, [dispatch, orderRules, mounted]);
+  }, [dispatch, orderRules]);
 
   useEffect(() => {
     localStorage.setItem("orderRules", JSON.stringify(orderRules));
   }, [orderRules]);
-
-  const isFilterApplied = orderRules.name || orderRules.attack;
 
   return (
     <OrderContainer>
@@ -62,9 +47,6 @@ const SearchOrder = () => {
           <Option value="desc">Highest to lowest</Option>
         </Select>
       </SelectOption>
-      {isFilterApplied && (
-        <ResetButton onClick={clearFilters}>Clear Filters</ResetButton>
-      )}
     </OrderContainer>
   );
 };
